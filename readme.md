@@ -15,12 +15,12 @@ bin/magento setup:upgrade
 Call the command and pass the customers email address and the new password.
 
 ```bash
-bin/magento customer:change-password test@examplecom password123
+bin/magento customer:change-password test@example.com password123
 ```
 
 If customer accounts are not shared between websites, a website code has to be specified with the `--website` or `-w` option.
 
 
 ```bash
-bin/magento customer:change-password --website base test@examplecom password123
+bin/magento customer:change-password --website base test@example.com password123
 ```
