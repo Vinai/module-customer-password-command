@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace VinaiKopp\CustomerPasswordSetCommand\Test\Integration;
+namespace VinaiKopp\CustomerChangePasswordCommand\Test\Integration;
 
 use Magento\Customer\Model\Customer;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\TestFramework\ObjectManager;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use VinaiKopp\CustomerPasswordSetCommand\Command\CustomerPasswordSetCommand;
+use VinaiKopp\CustomerChangePasswordCommand\Command\CustomerChangePasswordCommand;
 
-class CustomerPasswordSetCommandTest extends \PHPUnit_Framework_TestCase
+class CustomerChangePasswordCommandTest extends \PHPUnit_Framework_TestCase
 {
-    private function createCommand(): CustomerPasswordSetCommand
+    private function createCommand(): CustomerChangePasswordCommand
     {
-        return ObjectManager::getInstance()->create(CustomerPasswordSetCommand::class);
+        return ObjectManager::getInstance()->create(CustomerChangePasswordCommand::class);
     }
 
     private function instantiateCustomerModel(): Customer

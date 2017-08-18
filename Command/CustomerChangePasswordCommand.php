@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace VinaiKopp\CustomerPasswordSetCommand\Command;
+namespace VinaiKopp\CustomerChangePasswordCommand\Command;
 
 use Magento\Customer\Model\Customer;
 use Magento\Customer\Model\CustomerFactory;
@@ -16,7 +16,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class CustomerPasswordSetCommand extends Command
+class CustomerChangePasswordCommand extends Command
 {
     /**
      * @var CustomerFactory
@@ -61,7 +61,7 @@ class CustomerPasswordSetCommand extends Command
 
     protected function configure()
     {
-        $this->setName('customer:password:set');
+        $this->setName('customer:change-password');
         $this->setDescription('Set a customers password');
         $this->addOption(
             'website',

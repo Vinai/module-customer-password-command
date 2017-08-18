@@ -3,7 +3,7 @@
     <type name="Magento\Framework\Console\CommandList">
         <arguments>
             <argument name="commands" xsi:type="array">
-                <item name="vinaikopp-customer-password-set" xsi:type="object">VinaiKopp\CustomerPasswordSetCommand\Command\CustomerPasswordSetCommand</item>
+                <item name="vinaikopp-customer-password-set" xsi:type="object">VinaiKopp\CustomerChangePasswordCommand\Command\CustomerChangePasswordCommand</item>
             </argument>
         </arguments>
     </type>
