@@ -37,6 +37,11 @@ class CustomerChangePasswordCommand extends Command
      * @var InputInterface
      */
     private $input;
+    
+    /**
+     * @var AppState
+     */
+    private $state;
 
     public function __construct(
         CustomerFactory $customerFactory,
@@ -49,14 +54,6 @@ class CustomerChangePasswordCommand extends Command
         $this->customerResource = $resource;
         $this->storeManager = $storeManager;
         $this->state = $state;
-    }
-
-    private function guardAgainstSessionInitializationBug(AppState $appState)
-    {
-        try {
-            $appState->setAreaCode(Area::AREA_ADMINHTML);
-        } catch (\Exception $e) {
-        }
     }
 
     protected function configure()
