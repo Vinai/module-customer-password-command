@@ -9,6 +9,7 @@ use Magento\Customer\Model\CustomerFactory;
 use Magento\Customer\Model\ResourceModel\Customer as CustomerResource;
 use Magento\Framework\App\Area;
 use Magento\Framework\App\State as AppState;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Store\Model\StoreManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -41,7 +42,7 @@ class CustomerChangePasswordCommand extends Command
     /**
      * @var AppState
      */
-    private $state;
+    private $appState;
 
     public function __construct(
         CustomerFactory $customerFactory,
@@ -53,7 +54,7 @@ class CustomerChangePasswordCommand extends Command
         $this->customerFactory = $customerFactory;
         $this->customerResource = $resource;
         $this->storeManager = $storeManager;
-        $this->state = $state;
+        $this->appState = $state;
     }
 
     protected function configure()
@@ -73,7 +74,14 @@ class CustomerChangePasswordCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->input = $input;
-        $this->state->setAreaCode(Area::AREA_ADMINHTML);
+        try {
+            // catch exception for compatibility with older Magento 2 versions and
+            // third party modules that set the application state in command constructors.
+            $this->appState->setAreaCode(Area::AREA_ADMINHTML);
+        } catch (LocalizedException $exception) {
+            // left empty on purpose
+        }
+        
         $customer = $this->getCustomerByEmail($this->getEmail());
         $customer->setPassword($this->getPassword());
         $this->customerResource->save($customer);
